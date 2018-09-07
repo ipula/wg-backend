@@ -34,4 +34,10 @@ class GameController extends Controller
             return response()->json($result, 500);
         }
     }
+
+    public function getGame(){
+        $game=Game::paginate(10);
+        $result = APIHelper::createAPIResponse(false, null, $game, null);
+        return response()->json($result, 200);
+    }
 }

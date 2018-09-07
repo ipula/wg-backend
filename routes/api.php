@@ -28,6 +28,7 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::group(['middleware' => 'jwt-auth'], function () {
             Route::post('game', ['as' => 'createGame', 'uses' => 'Api\GameController@createGame']);
+            Route::get('game', ['as' => 'getGame', 'uses' => 'Api\GameController@getGame']);
         });
     });
 });
