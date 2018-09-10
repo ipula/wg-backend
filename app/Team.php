@@ -9,4 +9,9 @@ class Team extends Model
 {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
+
+    public function games()
+    {
+        return $this->belongsToMany('App\Game', 'games_teams');
+    }
 }

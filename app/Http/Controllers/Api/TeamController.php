@@ -30,6 +30,7 @@ class TeamController extends Controller
         $team->team_additional_note=$request->team_additional_note;
 
         if($team->save()){
+            $team->games()->attach([$request->game_id]);
             $result = APIHelper::createAPIResponse(false, null, null, "New Team created");
             return response()->json($result, 201);
         }else{

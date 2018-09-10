@@ -13,4 +13,9 @@ class Game extends Model
     public function getGameImageUrlAttribute($value){
         return config('wgconf.WEB_URL').$value;
     }
+
+    public function teams()
+    {
+        return $this->belongsToMany('App\Teams', 'games_teams');
+    }
 }
