@@ -29,6 +29,15 @@ Route::group(['prefix' => 'v1'], function () {
         Route::group(['middleware' => 'jwt-auth'], function () {
             Route::post('game', ['as' => 'createGame', 'uses' => 'Api\GameController@createGame']);
             Route::get('game', ['as' => 'getGame', 'uses' => 'Api\GameController@getGame']);
+            Route::get('game/{id}', ['as' => 'getSingleGame', 'uses' => 'Api\GameController@getSingleGame']);
+            Route::post('game/{id}', ['as' => 'editGame', 'uses' => 'Api\GameController@editGame']);
+            Route::delete('game/{id}', ['as' => 'deleteGame', 'uses' => 'Api\GameController@deleteGame']);
+
+            Route::post('team', ['as' => 'createTeam', 'uses' => 'Api\TeamController@createTeam']);
+            Route::get('team', ['as' => 'getTeam', 'uses' => 'Api\TeamController@getTeam']);
+            Route::get('team/{id}', ['as' => 'getSingleTeam', 'uses' => 'Api\TeamController@getSingleTeam']);
+            Route::post('team/{id}', ['as' => 'editTeam', 'uses' => 'Api\TeamController@editTeam']);
+            Route::delete('team/{id}', ['as' => 'deleteTeam', 'uses' => 'Api\TeamController@deleteTeam']);
         });
     });
 });
