@@ -45,9 +45,9 @@ class TeamController extends Controller
         return response()->json($result, 200);
     }
 
-    public function editTeam($id,TeamUpdate $request){
+    public function editTeam($team_id,$old_game_id,TeamUpdate $request){
 
-        $team=Team::find($id);
+        $team=Team::find($team_id);
 
         if($team){
             if($request->team_name){
@@ -61,6 +61,13 @@ class TeamController extends Controller
             }
             if($request->team_player_name){
                 $team->team_player_name=$request->team_player_name;
+            }
+            if($request->team_player_name){
+                $team->team_player_name=$request->team_player_name;
+            }
+            if($old_game_id!=$request->team_player_name){
+                $team->games()->sync([$old_game_id]);
+                $team->games()->attach([$request->game_id]);
             }
             if(isset($request->team_image) && $request->team_image!=null){
                 $timestamp = round(microtime(true) * 1000);

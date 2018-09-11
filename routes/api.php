@@ -36,8 +36,14 @@ Route::group(['prefix' => 'v1'], function () {
             Route::post('team', ['as' => 'createTeam', 'uses' => 'Api\TeamController@createTeam']);
             Route::get('team', ['as' => 'getTeam', 'uses' => 'Api\TeamController@getTeam']);
             Route::get('team/{id}', ['as' => 'getSingleTeam', 'uses' => 'Api\TeamController@getSingleTeam']);
-            Route::post('team/{id}', ['as' => 'editTeam', 'uses' => 'Api\TeamController@editTeam']);
+            Route::post('team/{id}/{game_id}', ['as' => 'editTeam', 'uses' => 'Api\TeamController@editTeam']);
             Route::delete('team/{id}', ['as' => 'deleteTeam', 'uses' => 'Api\TeamController@deleteTeam']);
+
+            Route::post('player', ['as' => 'createPlayer', 'uses' => 'Api\PlayerController@createPlayer']);
+            Route::get('player', ['as' => 'getPlayer', 'uses' => 'Api\PlayerController@getPlayer']);
+            Route::get('player/{id}', ['as' => 'getSinglePlayer', 'uses' => 'Api\PlayerController@getSinglePlayer']);
+            Route::post('player/{id}/{team_id}', ['as' => 'editPlayer', 'uses' => 'Api\PlayerController@editPlayer']);
+            Route::delete('player/{id}', ['as' => 'deletePlayer', 'uses' => 'Api\PlayerController@deletePlayer']);
         });
     });
 });

@@ -27,6 +27,7 @@ class TeamUpdate extends FormRequest
             'team_name' =>'nullable|required_without_all:team_type,team_player_name,team_image',
             'team_type' =>'required_without_all:team_name,team_player_name,team_image',
             'team_player_name' =>'nullable|required_without_all:team_type,team_name,team_image',
+            'game_id' =>'required',
             'team_image' => 'required_without_all:team_type,team_name,team_player_name|image|mimes:jpg,jpeg,PNG,png|max:5120'
         ];
     }
@@ -38,6 +39,7 @@ class TeamUpdate extends FormRequest
             'team_name.required_without_all'=>[60001,'Team name required'],
             'team_type.required_without_all'=>[60001,'Team type required'],
             'team_image.required_without_all'=>[60001,'Team image field required'],
+            'game_id.required'=>[60001,'Game id field required'],
             'team_player_name.required_without_all'=>[60001,'Team player name field required'],
             'team_image.image'=>[50001,'Only images allowed to upload'],
             'team_image.mimes'=>[50001,'Only jpg,jpeg And PNG,png Allowed'],
