@@ -103,22 +103,22 @@ class PlayerController extends Controller
         }
     }
 
-    public function getSingleTeam($team_id){
-        $team=Team::find($team_id);
-        if($team){
-            $result = APIHelper::createAPIResponse(false, null, $team, null);
+    public function getSinglePlayer($team_id){
+        $player=Player::find($team_id);
+        if($player){
+            $result = APIHelper::createAPIResponse(false, null, $player, null);
             return response()->json($result, 200);
         }else{
             $result = APIHelper::createAPIResponse(true, 60007, null, null);
             return response()->json($result, 422);
         }
     }
-    public function deleteTeam($team_id){
-        $team=Team::find($team_id);
-        if($team){
-            $team->deleted_at=now();
-            $team->save();
-            $result = APIHelper::createAPIResponse(false, null, null, "Team deleted");
+    public function deletePlayer($palyer_id){
+        $player=Player::find($palyer_id);
+        if($player){
+            $player->deleted_at=now();
+            $player->save();
+            $result = APIHelper::createAPIResponse(false, null, null, "Player deleted");
             return response()->json($result, 200);
         }else{
             $result = APIHelper::createAPIResponse(true, 60007, null, null);
