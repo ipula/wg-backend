@@ -17,6 +17,6 @@ class Player extends Model
 //    }
     public function teams()
     {
-        return $this->belongsToMany('App\Team', 'games_teams');
+        return $this->belongsToMany('App\Team', 'teams_players','player_id');
     }
 }

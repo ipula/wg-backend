@@ -14,4 +14,8 @@ class Team extends Model
     {
         return $this->belongsToMany('App\Game', 'games_teams');
     }
+    public function players()
+    {
+        return $this->belongsToMany('App\Player', 'teams_players');
+    }
 }

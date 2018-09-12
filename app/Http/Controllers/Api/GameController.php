@@ -32,7 +32,7 @@ class GameController extends Controller
             $result = APIHelper::createAPIResponse(false, null, null, "New game created");
             return response()->json($result, 201);
         }else{
-            $result = APIHelper::createAPIResponse(false, 25001, null, null);
+            $result = APIHelper::createAPIResponse(true, 25001, null, null);
             return response()->json($result, 500);
         }
     }
@@ -73,11 +73,11 @@ class GameController extends Controller
                 $result = APIHelper::createAPIResponse(false, null, null, "Game updated");
                 return response()->json($result, 201);
             }else{
-                $result = APIHelper::createAPIResponse(false, 25001, null, null);
+                $result = APIHelper::createAPIResponse(true, 25001, null, null);
                 return response()->json($result, 500);
             }
         }else{
-            $result = APIHelper::createAPIResponse(false, 20001, null, null);
+            $result = APIHelper::createAPIResponse(true, 20001, null, null);
             return response()->json($result, 404);
         }
     }
