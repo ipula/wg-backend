@@ -85,12 +85,11 @@ class PlayerController extends Controller
                     $player->player_image_url='assets/player_images/'.$new_fileName;
                 }
             }
-
+            if($old_team_id!=$request->team_id){
+                $player->teams()->sync([$old_team_id]);
+                $player->teams()->attach([$request->team_id]);
+            }
             if($player->save()){
-                if($old_team_id!=$request->team_id){
-                    $player->teams()->sync([$old_team_id]);
-                    $player->teams()->attach([$request->team_id]);
-                }
                 $result = APIHelper::createAPIResponse(false, null, null, "Player updated");
                 return response()->json($result, 201);
             }else{
