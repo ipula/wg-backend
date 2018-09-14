@@ -162,6 +162,9 @@ return [
 //jwt-auth
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
+        //cors
+        Barryvdh\Cors\ServiceProvider::class
+
     ],
 
     /*
