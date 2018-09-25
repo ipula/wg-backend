@@ -10,6 +10,10 @@ class Team extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
+    public function getTeamImageUrlAttribute($value){
+        return config('wgconf.WEB_URL').$value;
+    }
+
     public function games()
     {
         return $this->belongsToMany('App\Game', 'games_teams');
