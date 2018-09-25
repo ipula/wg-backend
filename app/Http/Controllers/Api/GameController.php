@@ -38,7 +38,7 @@ class GameController extends Controller
     }
 
     public function getGame(){
-        $game=Game::paginate(10);
+        $game=Game::with(['teams'])->paginate(10);
         $result = APIHelper::createAPIResponse(false, null, $game, null);
         return response()->json($result, 200);
     }
@@ -89,7 +89,17 @@ class GameController extends Controller
             return response()->json($result, 200);
         }else{
             $result = APIHelper::createAPIResponse(true, 60007, null, null);
-            return response()->json($result, 422);
+            return response()->json($result, 404);
+        }
+    }
+    public function searchGame($game_name){
+        $game=Game::where('game_name','LIKE',"%$game_name%")->get();
+        if($game){
+            $result = APIHelper::createAPIResponse(false, null, $game, null);
+            return response()->json($result, 200);
+        }else{
+            $result = APIHelper::createAPIResponse(true, 60007, null, null);
+            return response()->json($result, 404);
         }
     }
     public function deleteGame($game_id){
@@ -101,7 +111,7 @@ class GameController extends Controller
             return response()->json($result, 200);
         }else{
             $result = APIHelper::createAPIResponse(true, 60007, null, null);
-            return response()->json($result, 422);
+            return response()->json($result, 404);
         }
     }
 }

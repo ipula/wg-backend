@@ -26,7 +26,7 @@ class GameCreate extends FormRequest
         return [
             'game_name' =>'required',
             'game_type' =>'required',
-            'game_image' => 'required|image|mimes:jpg,jpeg,PNG,png|max:5120'
+            'game_image' => 'required|image|mimes:jpg,jpeg,PNG,png'
         ];
     }
 
@@ -38,8 +38,7 @@ class GameCreate extends FormRequest
             'game_type.required'=>[60001,'Game Type Required'],
             'game_image.required'=>[60001,'game_image field required'],
             'game_image.image'=>[50001,'Only images allowed to upload'],
-            'game_image.mimes'=>[50001,'Only jpg,jpeg And PNG,png Allowed'],
-            'game_image.max'=>[60008,'']
+            'game_image.mimes'=>[50001,'Only jpg,jpeg And PNG,png Allowed']
 
         ];
     }

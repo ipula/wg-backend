@@ -101,7 +101,17 @@ class TeamController extends Controller
             return response()->json($result, 200);
         }else{
             $result = APIHelper::createAPIResponse(true, 60007, null, null);
-            return response()->json($result, 422);
+            return response()->json($result, 404);
+        }
+    }
+    public function searchTeam($team_name){
+        $team=Team::where('team_name','LIKE',"%$team_name")->get;
+        if($team){
+            $result = APIHelper::createAPIResponse(false, null, $team, null);
+            return response()->json($result, 200);
+        }else{
+            $result = APIHelper::createAPIResponse(true, 60007, null, null);
+            return response()->json($result, 404);
         }
     }
     public function deleteTeam($team_id){
@@ -113,7 +123,7 @@ class TeamController extends Controller
             return response()->json($result, 200);
         }else{
             $result = APIHelper::createAPIResponse(true, 60007, null, null);
-            return response()->json($result, 422);
+            return response()->json($result, 404);
         }
     }
 }

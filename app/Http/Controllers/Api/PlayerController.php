@@ -109,7 +109,17 @@ class PlayerController extends Controller
             return response()->json($result, 200);
         }else{
             $result = APIHelper::createAPIResponse(true, 60007, null, null);
-            return response()->json($result, 422);
+            return response()->json($result, 404);
+        }
+    }
+    public function searchPlayer($player_name){
+        $player=Player::where('player_name','LIKE',"%$player_name")->get();
+        if($player){
+            $result = APIHelper::createAPIResponse(false, null, $player, null);
+            return response()->json($result, 200);
+        }else{
+            $result = APIHelper::createAPIResponse(true, 60007, null, null);
+            return response()->json($result, 404);
         }
     }
     public function deletePlayer($palyer_id){
@@ -121,7 +131,7 @@ class PlayerController extends Controller
             return response()->json($result, 200);
         }else{
             $result = APIHelper::createAPIResponse(true, 60007, null, null);
-            return response()->json($result, 422);
+            return response()->json($result, 404);
         }
     }
 }
