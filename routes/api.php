@@ -31,6 +31,7 @@ Route::group(['prefix' => 'v1'], function () {
             Route::get('game', ['as' => 'getGame', 'uses' => 'Api\GameController@getGame']);
             Route::get('game/{id}', ['as' => 'getSingleGame', 'uses' => 'Api\GameController@getSingleGame']);
             Route::get('searchGame', ['as' => 'searchGame', 'uses' => 'Api\GameController@searchGame']);
+            Route::get('getAllGames', ['as' => 'getAllGames', 'uses' => 'Api\GameController@getAllGames']);
             Route::post('game/{id}', ['as' => 'editGame', 'uses' => 'Api\GameController@editGame']);
             Route::delete('game/{id}', ['as' => 'deleteGame', 'uses' => 'Api\GameController@deleteGame']);
 
