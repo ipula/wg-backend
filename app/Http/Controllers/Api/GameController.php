@@ -92,8 +92,8 @@ class GameController extends Controller
             return response()->json($result, 404);
         }
     }
-    public function searchGame($game_name){
-        $game=Game::where('game_name','LIKE',"%$game_name%")->get();
+    public function searchGame(Request $request){
+        $game=Game::where('game_name','LIKE',"%$request->game_name%")->get();
         if($game){
             $result = APIHelper::createAPIResponse(false, null, $game, null);
             return response()->json($result, 200);

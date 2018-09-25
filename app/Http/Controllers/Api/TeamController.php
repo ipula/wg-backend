@@ -104,8 +104,8 @@ class TeamController extends Controller
             return response()->json($result, 404);
         }
     }
-    public function searchTeam($team_name){
-        $team=Team::where('team_name','LIKE',"%$team_name")->get;
+    public function searchTeam(Request $request){
+        $team=Team::where('team_name','LIKE',"%$request->team_name")->get;
         if($team){
             $result = APIHelper::createAPIResponse(false, null, $team, null);
             return response()->json($result, 200);
