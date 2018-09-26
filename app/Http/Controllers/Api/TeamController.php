@@ -30,7 +30,10 @@ class TeamController extends Controller
         $team->team_additional_note=$request->team_additional_note;
 
         if($team->save()){
-            $team->games()->attach([$request->game_id]);
+            for($x=0; $x<count($request->game_id); $x++){
+                $team->games()->attach([$request->game_id[$x]]);
+            }
+
             $result = APIHelper::createAPIResponse(false, null, null, "New Team created");
             return response()->json($result, 201);
         }else{
@@ -40,7 +43,7 @@ class TeamController extends Controller
     }
 
     public function getTeam(){
-        $game=Team::paginate(10);
+        $game=Team::with(['games'])->paginate(10);
         $result = APIHelper::createAPIResponse(false, null, $game, null);
         return response()->json($result, 200);
     }
