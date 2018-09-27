@@ -48,7 +48,7 @@ class PlayerController extends Controller
         return response()->json($result, 200);
     }
 
-    public function editPlayer($player_id,$old_team_id,PlayerUpdate $request){
+    public function editPlayer($player_id,PlayerUpdate $request){
 
         $player=Player::find($player_id);
 
@@ -85,11 +85,11 @@ class PlayerController extends Controller
                     $player->player_image_url='assets/player_images/'.$new_fileName;
                 }
             }
-            if($old_team_id!=$request->team_id){
-                $player->teams()->sync([$old_team_id]);
-                $player->teams()->attach([$request->team_id]);
-            }
             if($player->save()){
+                if($request->old_team_id){
+                    $player->teams()->sync($request->old_team_id);
+                }
+                $player->teams()->attach($request->team_id);
                 $result = APIHelper::createAPIResponse(false, null, null, "Player updated");
                 return response()->json($result, 201);
             }else{
