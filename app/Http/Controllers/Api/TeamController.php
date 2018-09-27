@@ -48,7 +48,6 @@ class TeamController extends Controller
     public function editTeam($team_id,TeamUpdate $request){
 
         $team=Team::find($team_id);
-//        return response()->json([$request->game_id,$request->old_game_id], 201);
         if($team){
             if($request->team_name){
                 $team->team_name=$request->team_name;
@@ -105,7 +104,7 @@ class TeamController extends Controller
         }
     }
     public function searchTeam(Request $request){
-        $team=Team::where('team_name','LIKE',"%$request->team_name")->get();
+        $team=Team::with(['games'])->where('team_name','LIKE',"%$request->team_name%")->get();
         if($team){
             $result = APIHelper::createAPIResponse(false, null, $team, null);
             return response()->json($result, 200);
