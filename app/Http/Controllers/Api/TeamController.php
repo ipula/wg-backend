@@ -79,7 +79,7 @@ class TeamController extends Controller
 
             if($team->save()){
                 if(count($request->old_game_id)){
-                    $team->games()->sync($request->old_game_id);
+                    $team->games()->detach($request->old_game_id);
                 }
                     $team->games()->attach($request->game_id);
                 $result = APIHelper::createAPIResponse(false, null, null, "Team updated");

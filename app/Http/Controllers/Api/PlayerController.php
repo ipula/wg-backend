@@ -87,7 +87,7 @@ class PlayerController extends Controller
             }
             if($player->save()){
                 if($request->old_team_id){
-                    $player->teams()->sync($request->old_team_id);
+                    $player->teams()->detach($request->old_team_id);
                 }
                 $player->teams()->attach($request->team_id);
                 $result = APIHelper::createAPIResponse(false, null, null, "Player updated");
