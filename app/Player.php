@@ -12,9 +12,9 @@ class Player extends Model
     protected $primaryKey='id';
     protected $dates = ['deleted_at'];
 
-//    public function getGameImageUrlAttribute($value){
-//        return config('wgconf.WEB_URL').$value;
-//    }
+    public function getPlayerImageUrlAttribute($value){
+        return config('wgconf.WEB_URL').$value;
+    }
     public function teams()
     {
         return $this->belongsToMany('App\Team', 'teams_players','player_id');
