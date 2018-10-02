@@ -113,7 +113,7 @@ class PlayerController extends Controller
         }
     }
     public function searchPlayer(Request $request){
-        $player=Player::where('player_name','LIKE',"%$request->player_name")->get();
+        $player=Player::where('player_name','LIKE',"%$request->player_name%")->get();
         if($player){
             $result = APIHelper::createAPIResponse(false, null, $player, null);
             return response()->json($result, 200);
