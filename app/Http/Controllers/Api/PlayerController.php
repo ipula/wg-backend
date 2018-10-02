@@ -33,7 +33,7 @@ class PlayerController extends Controller
         }
 
         if($player->save()){
-            $player->teams()->attach([$request->team_id]);
+            $player->teams()->attach($request->team_id);
             $result = APIHelper::createAPIResponse(false, null, null, "New player created");
             return response()->json($result, 201);
         }else{
