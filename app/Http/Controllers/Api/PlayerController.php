@@ -103,7 +103,7 @@ class PlayerController extends Controller
     }
 
     public function getSinglePlayer($team_id){
-        $player=Player::find($team_id);
+        $player=Player::with(['teams'])->find($team_id);
         if($player){
             $result = APIHelper::createAPIResponse(false, null, $player, null);
             return response()->json($result, 200);
