@@ -125,4 +125,15 @@ class TeamController extends Controller
             return response()->json($result, 404);
         }
     }
+
+    public function getAllTeams(){
+        $game=Team::all();
+        if($game){
+            $result = APIHelper::createAPIResponse(false, null, $game, null);
+            return response()->json($result, 200);
+        }else{
+            $result = APIHelper::createAPIResponse(true, 60007, null, null);
+            return response()->json($result, 404);
+        }
+    }
 }

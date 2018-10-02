@@ -37,6 +37,7 @@ Route::group(['prefix' => 'v1'], function () {
 
             Route::post('team', ['as' => 'createTeam', 'uses' => 'Api\TeamController@createTeam']);
             Route::get('team', ['as' => 'getTeam', 'uses' => 'Api\TeamController@getTeam']);
+            Route::get('getAllTeams', ['as' => 'getAllTeams', 'uses' => 'Api\TeamController@getAllTeams']);
             Route::get('team/{id}', ['as' => 'getSingleTeam', 'uses' => 'Api\TeamController@getSingleTeam']);
             Route::get('searchTeam', ['as' => 'searchTeam', 'uses' => 'Api\TeamController@searchTeam']);
             Route::post('team/{id}', ['as' => 'editTeam', 'uses' => 'Api\TeamController@editTeam']);
