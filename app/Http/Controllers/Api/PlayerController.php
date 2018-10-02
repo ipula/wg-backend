@@ -43,7 +43,7 @@ class PlayerController extends Controller
     }
 
     public function getPlayer(){
-        $players=Player::paginate(10);
+        $players=Player::with(['teams'])->paginate(10);
         $result = APIHelper::createAPIResponse(false, null, $players, null);
         return response()->json($result, 200);
     }
